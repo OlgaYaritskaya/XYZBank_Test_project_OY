@@ -11,9 +11,29 @@ namespace Sauce_demo.PageObjects
     {
         IWebDriver _driver;
 
+        private readonly By _cartButtonLocator = By.ClassName("shopping_cart_link");
+        private readonly By _addToCartButtonLocator = By.CssSelector(".pricebar button");
+
         public MainCataloguePageObject(IWebDriver driver)
         {
             _driver = driver;   
         }
+
+        public MainCataloguePageObject AddItemToCart()
+        { 
+            //добавить условие выбора, что выбираем.
+            //не должно быть кнопки removeFromCart
+            _driver.FindElement(_addToCartButtonLocator).Click();   
+
+            return this;
+        }
+
+        public CartPageObject NavigateToCart()
+        {
+            _driver.FindElement(_cartButtonLocator).Click();
+
+            return new CartPageObject(_driver);
+        }
+
     }
 }
