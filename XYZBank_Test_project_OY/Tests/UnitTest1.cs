@@ -7,15 +7,8 @@ using static Sauce_demo.Data.Users;
 
 namespace Sauce_demo.Tests
 {
-    public class Tests
-    {
-
-        [SetUp]
-        public static void Setup()
-        {
-
-        }
-
+    public class Tests : BaseTest
+    { 
         [Test]
         public void Test1()
         {

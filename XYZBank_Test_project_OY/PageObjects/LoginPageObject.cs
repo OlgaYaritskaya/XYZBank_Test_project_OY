@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Sauce_demo.Data.Users;
 
 namespace Sauce_Demo.PageObjects
 {
@@ -22,7 +23,7 @@ namespace Sauce_Demo.PageObjects
             _driver = driver;
         }
 
-        public MainCataloguePageObject Login(Users.User userLogin)
+        public MainCataloguePageObject Login(User userLogin)
         {
             var loginInput = _driver.FindElement(_userNameInputLocator);
             loginInput.SendKeys(userLogin.ToString());

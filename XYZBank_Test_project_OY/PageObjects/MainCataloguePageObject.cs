@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework.Internal;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,21 +14,28 @@ namespace Sauce_demo.PageObjects
 
         private readonly By _cartButtonLocator = By.ClassName("shopping_cart_link");
         private readonly By _addToCartButtonLocator = By.CssSelector(".pricebar button");
+        private readonly By _removeItemFromCartButtonLocator = By.XPath("//button[contains(text(), 'Remove')]");
 
         public MainCataloguePageObject(IWebDriver driver)
         {
             _driver = driver;   
         }
 
-        public MainCataloguePageObject AddItemToCart()
+        public MainCataloguePageObject AddItemToCart(string itemName)
         { 
-            //добавить условие выбора, что выбираем.
-            //не должно быть кнопки removeFromCart
-            _driver.FindElement(_addToCartButtonLocator).Click();   
+            var updatedItemName = itemName.ToLower().Replace(" ", "-");
+            _driver.FindElement(By.Id($"add-to-cart-{updatedItemName}")).Click();
 
             return this;
         }
 
+        public MainCataloguePageObject RemoveItemFromCart(string itemName)
+        {
+            var updatedItemName = itemName.ToLower().Replace(" ", "-");
+            _driver.FindElement(By.Id($"remove-{updatedItemName}")).Click();
+
+            return this;
+        }
         public CartPageObject NavigateToCart()
         {
             _driver.FindElement(_cartButtonLocator).Click();

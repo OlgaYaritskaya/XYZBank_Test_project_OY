@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Sauce_demo.Data.Users;
 
 namespace Sauce_demo.Tests
 {
@@ -15,7 +16,7 @@ namespace Sauce_demo.Tests
             LoginPageObject loginPage = new LoginPageObject(_driver);
             
             //залогиниться
-            var mainCatalogue = loginPage.Login(Data.Users.User.standard_user);
+            var mainCatalogue = loginPage.Login(User.standard_user);
             
             //добавить товар в корзину
 

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sauce_demo.Tests //неймспейс для тестов нужен отдельный?
+namespace Sauce_demo.Tests //неймспейс для апи и юай тестов нужен отдельный?
 {
     public class BaseTest
     {
@@ -15,7 +15,10 @@ namespace Sauce_demo.Tests //неймспейс для тестов нужен �
         [SetUp]
         public void SetUp()
         {
-            _driver = new ChromeDriver();
+            if (_driver == null)
+            {
+                _driver = new ChromeDriver();
+            }
             _driver.Navigate().GoToUrl("https://www.saucedemo.com/");
         }
 
